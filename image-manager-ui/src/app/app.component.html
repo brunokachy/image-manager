@@ -1,0 +1,64 @@
+<div class="container">
+  <h1>Image Manager</h1>
+  <div class="mt-5 col-md-12"></div>
+
+  <div *ngFor="let alert of alerts">
+    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">
+      {{ alert.msg }}</alert>
+  </div>
+  <div *ngFor="let alert of spinnerAlerts">
+    <alert [type]="alert.type" (onClosed)="onClosedSpinner(alert)">
+      {{ alert.msg }}</alert>
+  </div>
+
+  <div class="mt-5 col-md-12"></div>
+
+  <div class="row">
+    <div class="col-md-5">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="form-group">
+          <label for="image">Choose Image to Upload</label>
+          <input
+            formControlName="image"
+            id="image"
+            type="file"
+            (change)="fileChanged($event)"
+            class="file-input">
+          <label *ngIf="f.image.touched && f.image.invalid" class="alert alert-danger">
+            <span *ngIf="f.image.errors?.required">Required</span>
+            <span *ngIf="f.image.errors?.inValidExt && !f.image.errors?.required">Invalid file type</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Image Description</label>
+          <textarea
+            formControlName="description"
+            id="description"
+            type="text"
+            class="form-control">
+            </textarea>
+          <label *ngIf="f.description.touched && f.description.invalid" class="alert alert-danger">
+            <span *ngIf="f.description.errors.required">Required</span>
+          </label>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+
+    </div>
+  </div>
+  <div class="col-md-2">
+
+  </div>
+  <div class="col-md-5">
+
+  </div>
+</div>
+
+
+
+
+
+
+
