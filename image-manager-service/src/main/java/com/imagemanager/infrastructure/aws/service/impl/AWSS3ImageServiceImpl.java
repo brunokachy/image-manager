@@ -49,6 +49,8 @@ public class AWSS3ImageServiceImpl implements AWSS3ImageService {
 
 			amazonS3Client.putObject(request);
 
+			file.delete();
+
 			return true;
 
 		} catch (final SdkClientException | IOException e) {

@@ -24,9 +24,9 @@ export class AppComponent {
 
   acceptedExtensions = "jpg, jpeg, png";
 
-  // endpoint = window.location.origin + '/api/v1/image-manager/upload';
+   endpoint = window.location.origin + '/api/v1/image-manager/upload';
 
-  endpoint = 'http://localhost:8080/api/v1/image-manager/upload';
+ // endpoint = 'http://localhost:8080/api/v1/image-manager/upload';
 
   add(type, message): void {
     this.alerts.push({
@@ -76,6 +76,7 @@ export class AppComponent {
       (response) => {
         this.onClosedSpinner(this.spinnerAlerts[0]);
         this.add("success", "Image Uploaded Successfully");
+        this.form.reset();
       },
       (error) => {
         this.handleErrorResponse(error);
